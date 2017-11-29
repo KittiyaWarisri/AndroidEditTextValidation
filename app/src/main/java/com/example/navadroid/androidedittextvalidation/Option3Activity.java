@@ -47,13 +47,51 @@ public class Option3Activity extends AppCompatActivity {
                 if (etName.getText().toString().length() == 0) {
                     etName.setError("Required");
                 }
+                else if(!etName.getText().toString().trim().matches("^[a-zA-Z]+[a-z]+[a-z]+")){
+                    etName.setError("Must be at least 3 characters");
+
+                }
             }
         });
 
         etPwd.addTextChangedListener(new TextValidator(etPwd) {
             @Override
             public void validate(TextView textView, String text) {
-                // TODO: add your Password validation here
+                if (etPwd.getText().toString().length() == 0) {
+                    etPwd.setError("Pleas Enter Password");
+
+                }
+                else if(etPwd.getText().toString().matches("[a-zA-Z ]+")){
+                    etPwd.setError("Invalid Password");
+
+                }
+                else if (etPwd != null && etPwd.length() < 6) {
+                    etPwd.setError("Must be at least 6 characters");
+
+                }
+            }
+        });
+        etEmail.addTextChangedListener(new TextValidator(etEmail) {
+            @Override
+            public void validate(TextView textView, String text) {
+
+
+                if(!etEmail.getText().toString().trim().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")){
+                    etEmail.setError("Invalid Email");
+                }
+            }
+        });
+        etPhone.addTextChangedListener(new TextValidator(etPhone) {
+            @Override
+            public void validate(TextView textView, String text) {
+                if(!etPhone.getText().toString().trim().matches("^[0]+[0-9]+")){
+                    etPhone.setError("Must start with 0");
+
+                }
+                else if (etPhone.getText().toString().length() == 0 ||etPhone.getText().toString().length() <=9 ||etPhone.getText().toString().length() > 10) {
+                    etPhone.setError("Invalid Phone Number");
+
+                }
             }
         });
 

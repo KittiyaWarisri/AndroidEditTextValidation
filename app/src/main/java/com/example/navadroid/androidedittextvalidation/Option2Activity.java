@@ -53,6 +53,7 @@ public class Option2Activity extends AppCompatActivity implements TextWatcher, V
 
     @Override
     public void afterTextChanged(Editable s) {
+
         validateEditText();
     }
 
@@ -72,7 +73,38 @@ public class Option2Activity extends AppCompatActivity implements TextWatcher, V
             etName.setError("Required");
             isValidated = false;
         }
+        else if(!etName.getText().toString().trim().matches("^[a-zA-Z]+[a-z]+[a-z]+")){
+            etName.setError("Must be at least 3 characters");
+            isValidated = false;
+        }
         // TODO: add your EditText validation here
+        if (etPwd.getText().toString().length() == 0) {
+            etPwd.setError("Pleas Enter Password");
+            isValidated = false;
+        }
+        else if(etPwd.getText().toString().matches("[a-zA-Z ]+")){
+            etPwd.setError("Invalid Password");
+            isValidated = false;
+        }
+        else if (etPwd != null && etPwd.length() < 6) {
+            etPwd.setError("Must be at least 6 characters");
+            isValidated = false;
+        }
+        if(!etPhone.getText().toString().trim().matches("^[0]+[0-9]+")){
+            etPhone.setError("Must start with 0");
+            isValidated = false;
+        }
+        else if (etPhone.getText().toString().length() == 0 ||etPhone.getText().toString().length() <=9 ||etPhone.getText().toString().length() > 10) {
+            etPhone.setError("Invalid Phone Number");
+            isValidated = false;
+        }
+        if(!etEmail.getText().toString().trim().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")){
+            etEmail.setError("Invalid Email");
+            isValidated =false;
+        }
+
+
+
 
         return isValidated;
     }
